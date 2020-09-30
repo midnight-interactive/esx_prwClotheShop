@@ -40,18 +40,18 @@ function ClotheShopAdd(menu)
 	playerPed = GetPlayerPed(-1)
 	local tenues = NativeUI.CreateItem("Mes tenues","")
 	menu:AddItem(tenues)
-	local haut = _menuPool:AddSubMenu(menu, "Haut","",true,true)
+	local haut = _menuPool:AddSubMenu(menu, "Top","",true,true)
 	local bras = _menuPool:AddSubMenu(menu, "Bras","",true,true)
 	local tsh = _menuPool:AddSubMenu(menu, "T-shirt","",true,true)
-	local bas = _menuPool:AddSubMenu(menu, "Pantalon","",true,true)
-	local chaussure = _menuPool:AddSubMenu(menu, "Chaussure","",true,true)
-	local lunette = _menuPool:AddSubMenu(menu, "Lunette","",true,true)
-	local chapeau = _menuPool:AddSubMenu(menu, "Chapeau","",true,true)
-	local gil = _menuPool:AddSubMenu(menu, "Gillet par balles","",true,true)
-	local sac = _menuPool:AddSubMenu(menu, "Sac","",true,true)
+	local bas = _menuPool:AddSubMenu(menu, "Pants","",true,true)
+	local chaussure = _menuPool:AddSubMenu(menu, "Shoes","",true,true)
+	local lunette = _menuPool:AddSubMenu(menu, "Glasses","",true,true)
+	local chapeau = _menuPool:AddSubMenu(menu, "Hat","",true,true)
+	local gil = _menuPool:AddSubMenu(menu, "Bulletproof Vest","",true,true)
+	local sac = _menuPool:AddSubMenu(menu, "Backpack","",true,true)
 	--local montre = _menuPool:AddSubMenu(menu, "Montre","",true,true)
-	local chain = _menuPool:AddSubMenu(menu, "Chaine","",true,true)
-	local boucle = _menuPool:AddSubMenu(menu, "Boucle d'oreille","",true,true)
+	local chain = _menuPool:AddSubMenu(menu, "Chain","",true,true)
+	local boucle = _menuPool:AddSubMenu(menu, "Earring","",true,true)
 
  	chaussureFct(chaussure)
  	gilFct(gil)
@@ -69,7 +69,7 @@ function ClotheShopAdd(menu)
 	menu.OnItemSelect = function(_,_,ind)
 		if ind == 1 then
 			_menuPool:CloseAllMenus()
-			local clotheShop2 = NativeUI.CreateMenu("", "Magasin", 5, 100,"shopui_title_midfashion","shopui_title_midfashion")
+			local clotheShop2 = NativeUI.CreateMenu("", "Shop", 5, 100,"shopui_title_midfashion","shopui_title_midfashion")
 			_menuPool:Add(clotheShop2)
 			SavedTenues(clotheShop2)
 			clotheShop2:Visible(not clotheShop2:Visible())
@@ -89,13 +89,13 @@ function refreshthisshit()
 	_menuPool:CloseAllMenus(
 
 	)
-	local clotheShop2 = NativeUI.CreateMenu("", "Magasin", 5, 100,"shopui_title_midfashion","shopui_title_midfashion")
+	local clotheShop2 = NativeUI.CreateMenu("", "Shop", 5, 100,"shopui_title_midfashion","shopui_title_midfashion")
 	_menuPool:Add(clotheShop2)
 	SavedTenues(clotheShop2)
 	clotheShop2:Visible(not clotheShop2:Visible())
 end
 function SavedTenues(menu)
-	p = NativeUI.CreateItem("Sauvegarder cette tenue","")
+	p = NativeUI.CreateItem("Save this outfit","")
 	menu:AddItem(p)
 	local sqk = nil
 	menu.OnItemSelect = function(_,ix,ind)
@@ -116,13 +116,13 @@ function SavedTenues(menu)
 	end
 	ESX.TriggerServerCallback('parow:GetTenues', function(skin)
 		if #skin == 0 then
-			menu:AddItem(NativeUI.CreateItem("Vide",""))
+			menu:AddItem(NativeUI.CreateItem("Empty",""))
 		end
 		for i = 1, #skin,1 do
 			local m = _menuPool:AddSubMenu(menu, skin[i].label,"",true,true)
-			p = NativeUI.CreateItem("Équiper","")
-			k = NativeUI.CreateItem("Renommer","")
-			l = NativeUI.CreateItem("Supprimer","")
+			p = NativeUI.CreateItem("Equip","")
+			k = NativeUI.CreateItem("Rename","")
+			l = NativeUI.CreateItem("Remove","")
 			m:AddItem(p)
 			m:AddItem(k)
 			m:AddItem(l)
@@ -205,7 +205,7 @@ function montreMenu(menu)
 			
 		end
 
-		v = NativeUI.CreateListItem("Montre #"..ind, amount, 1, "",5)
+		v = NativeUI.CreateListItem("Watch #"..ind, amount, 1, "",5)
 	
 		menu:AddItem(v)
 		
@@ -285,7 +285,7 @@ function chainFct(menu)
 			
 		end
 
-		v = NativeUI.CreateListItem("Chaine #"..ind, amount, 1, "",5)
+		v = NativeUI.CreateListItem("Chain #"..ind, amount, 1, "",5)
 	
 		menu:AddItem(v)
 		
@@ -421,7 +421,7 @@ function tshirtmenu(menu)
 					
 				end
 
-				x = NativeUI.CreateListItem("Sous haut #"..i, amount, 1, "",5)
+				x = NativeUI.CreateListItem("Under top #"..i, amount, 1, "",5)
 			
 				menu:AddItem(x)
 				
@@ -495,7 +495,7 @@ function hautFct(menu)
 		--hautItems = {"T-shirt","T-shirt","Maillot de basket","Survêtement","Veste","Débardeur","Veste en cuir","Veste capuche","Sweat","Polo","Costard","Chemise","Chemise","Chemise","Chemise à carreaux","Torse nu","T-shirt","Débardeur","T-shirt noël","Veste classe","Veste classe","s"}
 		sousTorse = {15,15,15,1,1,15,2,1,15,15,10,6 ,15,15,15,15,15,15,15,6,4,13,7,15,1,4,6,15,4,4,31,31,31,31,15,15,4 ,15,2,15,15,6,15,15,15,15,6,0}
 		brasInd =   {0 ,0 ,2 ,0,1,5 ,1,1,8 ,0 ,1 ,11,6 ,11 ,1  ,15 ,0 ,5 ,0,1,1,11,0,1,1,11,11,1,1,1,1,1,1,0,0,1		,5 ,1,8 ,0 ,0,1 ,11,11,0, 0,1}
-	hautItems = {"T-shirt","T-shirt","Maillot de basket","Veste de survêtement","Veste classique","Débardeur","Veste en cuir","Veste à capuche","Sweat","Polo","Veste de costard","Classe","Chemise longue","Chemise","Chemise à carreaux","Rien","T-shirt","Débardeur","T-shirt","Veste de costard","Veste de costard","Veste","T-shirt","Veste de costard","Veste de costard","Veste","Chemise","Veste de costard","Veste de costard","Veste de costard","Veste de costard","Veste de costard","Veste de costard","T-shirt","T-shirt","Veste de costard","Débardeur","Veste en cuir","Sweat","Polo","Veste","Chemise","Chemise avec bretelle","Chemise avec bretelle","T-shirt","Chemise","Veste de costard","T-shirt","Haut aviation","Pull","Pull","Pull de noël","Sweat de noël","Pull","Veste aviation","Haut police","T-shirt sale","Veste","Veste de costard","Veste de costard","Veste de costard","Gillet","Veste","Chemise","Veste en cuir","Veste bizarre","Veste bizarre","Haut en latex","","Veste","Veste avec fourrure","T-shirt","Veste longue","T-shirt","Veste luxe","Veste luxe","Veste longue","Veste longue","Pull de luxe","Veste collège","T-shirt long","T-shirt long","Polo long","T-shirt long","Pull street","Veste","Sweat à capuche","Veste collège","Veste collège","","Gillet","Rien","Veste","Polo","Polo","Chemise","Sweat à capuche","T-shirt","Haut commando","Veste de costard","Veste de costard","Veste de costard","Veste de costard","Veste de costard","Veste de costard","Chemise touriste","Veste luxe","Veste asiatique","Veste luxe","Débardeur étrange","Veste en cuir","Pull à col roulé","Veste longue","Veste","Tenue karaté","Veste longue","Haut père noël","Chemise","Veste","Veste de costard","Veste","Haut étrange","","Polo","Veste de pêcheur","Veste","Veste à carreaux","Veste à carreaux","T-shirt long","Veste de sécurité","","","","Chemise chill","Sweat à capuche","Veste luxe","Veste","Pull de vieux","Veste","Pull à col roulé","Veste longue","Veste","Veste longue","Veste","Pyjama","Pyjama","T-shirt","Veste aviation","Veste aviation","Veste cowboy","Veste asiatique","Veste en cuir","Haut de sport","Veste","Veste","Veste cowboy","Veste en cuir","Veste","Veste","Veste","","Veste en cuir","Veste","T-shirt","Haut spécial","Veste","Doudoune","Veste","Veste en jeans","Veste en jeans","Sweat à capuche","Veste en jeans","Veste en jeans","Veste en cuir","Veste en cuir","Veste","","Haut tron","Veste","Veste","Veste","Sweat","Veste de costard","Veste longue","Veste longue ouverte","Gillet spécial","Veste longue","Veste longue","Veste longue ouverte","Pull à motif","Veste","Veste longue","T-shirt","Pull de noël","Pull de noël","Pull de noël","Pull de noël","Veste noël","Veste de noël","Sweat à capuche","T-shirt lumineux","Pull à capuche","Sweat à capuche","Veste longue capuche","Pull à capuche","Veste camouflage","Veste camouflage capuche","T-shirt","Veste longue","Veste longue","Veste longue à capuche","","","Veste camouflage","Veste camouflage","Veste en camouflage","Veste longue","Veste longue capuche","Veste camouflage","Haut camouflage","Haut camouflage","T-shirt camouflage","Veste manche courte","Veste","T-shirt manche longue","T-shirt","Veste aviation","Veste aviation","Veste","Veste","Veste aviation","Polo","Polo","Débardeur","T-shirt manche très courte","Débardeur camouflage","Veste fourrure","Polo","Polo","Veste","Veste","Pull d'hiver","Pull super héro","Veste manche courte","Veste","Veste","Polo","Veste","Rien","Veste avec capuche","Haut pilote","Pull original","Veste original","Veste old school","Veste à losange","Pull spécial","T-shirt spécial","Veste spécial ouverte","Sweat à capuche","Sweat à capuche","Veste en cuir","Veste à carreaux","Veste à carreaux","Veste","Veste","Doudoune","Haut pilote","T-shirt"}
+	hautItems = {"T-shirt","T-shirt","Basketball jersey","Tracksuit Jacket","Classic Jacket","Tank Top","Leather Jacket","Hoodie","Sweatshirt","Polo","Suit Jacket","Class","Long Shirt","Shirt","Checkered Shirt","Nothing","T-shirt","Tank top","T-shirt","Suit jacket","Suit jacket","Jacket","T-shirt","Suit Jacket","Suit Jacket","Jacket","Shirt","Suit jacket","Suit jacket","Suit jacket","Suit jacket","Suit jacket","Suit jacket","T-shirt","T-shirt","Suit jacket","Tank top","Leather jacket","Sweatshirt","Polo","Jacket","Shirt","Shirt with suspenders","Shirt with suspender","T-shirt","Shirt","Suit jacket","T-shirt","High aviation","Sweater","Sweater","Christmas Sweater","Christmas Sweater","Sweater","Aviation jacket","High police","Dirty t-shirt","Jacket","Suit jacket","Suit jacket","Suit jacket","Gillet","Jacket","Shirt","Leather jacket","Weird jacket","Weird jacket","Latex top","","Jacket","Jacket with fur","T-shirt","Long jacket","T-shirt","Luxury jacket","Luxury jacket","Long jacket","Long jacket","Luxury sweater","College jacket","Long T-shirt","Long T-shirt","Long Polo","Long T-shirt","Street sweater","Jacket","Hoodie","College jacket","College jacket","","Gillet","Nothing","Jacket","Polo","Polo","Shirt","Hoodie","T-shirt","High commando","Suit jacket","VSuit jacket","Suit jacket","Suit jacket","Suit jacket","Suit jacket","Tourist shirt","Luxury jacket","Asian jacket","Luxury jacket","Strange tank top","Leather jacket","Turtleneck sweater","Long jacket","Jacket","Karate outfit","Long jacket","Senior santa claus","Shirt","Jacket","Suit jacket","Jacket","Strange top","","Polo","Fisherman's jacket","Jacket","Checked jacket","Checked jacket","Long T-shirt","Safety jacket","","","","Chill shirt","Hoodie","Luxury jacket","Jacket","Old sweater","Jacket","Turtleneck sweater","Long jacket","Jacket","Long jacket","Jacket","Pyjamas","Pyjamas","T-shirt","Aviation jacket","Aviation jacket","Cowboy jacket","Asian jacket","Leather jacket","Sports top","Jacket","Jacket","Cowboy Jacket","Leather jacket","Jacket","Jacket","Jacket","","Leather jacket","Jacket","T-shirt","Special top","Jacket","Puffy jacket","Jacket","Jean Jacket","Jean Jacket","Hoodie","Jean Jacket","Jean Jacket","Leather jacket","Leather jacket","Jacket","","High tron","Jacket","Jacket","Jacket","Sweatshirt","Suit jacket","Long jacket","Long open jacket","Special gillet","Long Jacket","Long Jacket","Long open jacket","Patterned sweater","Jacket","Long jacket","T-shirt","Christmas sweater","Christmas sweater","Christmas sweater","Christmas sweater","Christmas Jacket","Christmas Jacket","Hoodie","Luminous T-shirt","Hoodie","Hoodie","Long hooded jacket","Hoodie","Camo Jacket","Hooded Camo Jacket","T-shirt","Long jacket","Long jacket","Hooded Long jacket","","","Camo Jacket","Camo Jacket","Camo Jacket","Long Jacket","Long hooded jacket","Camo Jacket","Camouflage top","Camouflage top","Camo T-shirt","Short sleeve jacket","Jacket","Long sleeve t-shirt","T-shirt","Aviation jacket","Aviation jacket","Jacket","Jacket","Aviation jacket","Polo","Polo","Tank top","Very short sleeve t-shirt","Camo Tank Top","Fur jacket","Polo","Polo","Jacket","Jacket","Winter sweater","Super hero sweater","Short sleeve jacket","Jacket","Jacket","Polo","Jacket","Nothing","Jacket with hood","High pilot","Original sweater","Original jacket","Old school jacket","Diamond jacket","Special sweater","Special T-shirt","Special open jacket","Hoodie","Hoodie","Leather jacket","Checked jacket","Checked jacket","Jacket","Jacket","Puffy jacket","High pilot","T-shirt"}
 
 	for i = 0,GetNumberOfPedDrawableVariations(playerPed,11)-1,1 do
 --		Citizen.Wait(2)
@@ -507,7 +507,7 @@ function hautFct(menu)
 			
 		end
 		if hautItems[ind] == nil then
-			hautItems[ind] = "Haut #"..i
+			hautItems[ind] = "Top #"..i
 		end
 		x = NativeUI.CreateListItem(hautItems[ind], amount, 1, "",5)
 	
@@ -597,11 +597,11 @@ end
 
 function sacFct(menu)
 	playerPed = GetPlayerPed(-1)
-	n = NativeUI.CreateItem("Sac tactique","")
+	n = NativeUI.CreateItem("Tactical bag","")
 	menu:AddItem(n)
-	c = NativeUI.CreateItem("Sac noir","")
+	c = NativeUI.CreateItem("Black bag","")
 	menu:AddItem(c)
-	cx = NativeUI.CreateItem("Aucun sac","")
+	cx = NativeUI.CreateItem("No bag","")
 	menu:AddItem(cx)
 	menu.OnItemSelect = function (_, _, index)
 		if index == 1 then
@@ -698,7 +698,7 @@ function gilFct(menu)
 	 if curSex == 0 then
 
 		gilItem = {
-			"Aucun","Gillet léger","Gillet moyen","Gillet","Gillet lourd","Gillet","Gillet large","Gillet large","/","/","Gillet large","Gillet large","Gillet large","Aucun","Aucun","Gillet lourd","Gillet très lourd","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré"
+			"None","Lightweight gillet","Medium Gillet","Gillet","Heavy Gillet","Gillet","Large Gillet","Gillet large","/","/","Gillet large","Gillet large","Gillet large","Aucun","Aucun","Gillet lourd","Gillet très lourd","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré","Gillet coloré"
 
 		}
 
@@ -757,17 +757,17 @@ function basFct(menu)
 		botItem = {
 			"Jeans",
 			"Jeans",
-			"Short",
-			"Survetement",
+			"Shorts",
+			"Tracksuit",
 			"Jeans",
-			"Survetement large",
-			"Short",
+			"Wide suit",
+			"Shorts",
 			"Jeans",
-			"Pantalon chino",
-			"Pantalon chino avec ceinture",
-			"Jeans noir",
+			"Chinos",
+			"Chinos with belt",
+			"Black jeans",
 			"/",
-			"Short","Jeans noir ceinture","Caleçon","Short","Short coloré","Short chino","Caleçon","Pantalon ceinture","Pantalon","Caleçon","Pantalon chino","Pantalon chino ceinture","Jeans noir","Jeans noir","Jeans motif","Pantalon coloré","Jeans noir","Pantalon spécial","Pantalon aviateur","Pantalon cours","Legging","Pantalon large","Pantalon opération","Pantalon classe","Pantalon ouvrier","Pantalon classe","Pantalon de papel","Pantalon de papel","Survetement cours","Pantalon aviateur","Short long","Jeans large","/","Survêtement","Pantalon de combat","Pantalon déterminé","Pantalon classe","Pantalon classe","Pantalon classe","Pantalon luxe","Pantalon luxe","Pantalon luxe","Short motif", "Survêtement","Jupe","Pantalon noël","Pantalon spécial","Pantalon de luttin","Pantalon à motif","Caleçon","Short long","Jeans","Survêtement","Pyjama","Pantalon chill","Pantalon parachutiste","Pantalon cowboy","Pantalon de la mort","Pantalon cowboy","Pantalon skinny","Pantalon skinny","Pantalon skinny","Pantalon skinny","Jeans","Jeans","Pantalon Tron","Survêtement","Pantalon cuir","Pantalon trop petit","Pantalon trop petit","Jeans","Pantalon latex","Pantalon Opération Spécial","Pantalon lumineux"
+			"Shorts","Black jeans with belt","Underpants","Shorts","Colorful shorts","Chino shorts","Underpants","Belt pants","Trousers","Underpants","Chinos","Chinos with belt","Black jeans","Black jeans","Pattern jeans","Colored pants","Black Jeans","Special pants","Aviator pants","Running pants","Legging","Large pants","Operation pants","Classy pants","Worker's pants","Classy pants","Papel pants","Papel pants","Running suit","Aviator pants","Long Shorts","Large Jeans","/","Tracksuit","Combat pants","Determined pants","	","Classy pants","Classy pants","Luxury pants","Luxury Pants","Luxury Pants","Pattern shorts", "Tracksuit","Skirt","Christmas pants","Special pants","Pixie pants","Patterned trousers","Underpants","Long Shorts","Jeans","Tracksuit","Pyjamas","Chill pants","Parachute pants","Western pants","Pants of death","Cowboy pants","Skinny pants","Skinny pants","Skinny pants","Skinny pants","Jeans","Jeans","Tron pants","Tracksuit","Leather trousers","Petite Pants","Petite Pants","Jeans","Latex pants","Special Operation Pants","Luminous pants"
 
 
 		}
@@ -794,7 +794,7 @@ function basFct(menu)
 	end
 
 else
-		botItem = {"Jeans","Jeans Large","Jogging court","Pantalon Simple","Jeans à Ourlet","Short","Pantalon patte d’éléphant","Jupe de Travail","Jupe courte","Jupe courte a paillette","Short","Jeans Treillis","Jupe écolière","JE SUIS LE 13","Short 1","Culotte 1","Short 2","Culotte 2","Jupe Longue","Shorty","Porte Jartelle","Culotte","Porte Jartelle","Pantalon patte d’éléphant","Jupe Longue","Short","Jupe Courte","Slim","Jupe","Pantalon Aviateur","Treillis","Pantalon Mercenaire","Pantalon Large","Pantalon Eboueuse","Jupe Longue","Pantalon de Costume","Pantalon de Travail","Pantalon Travail 2","Pantalon Simple","Pantalon Costume","Pantalon d'aviateur","Pantalon Fermeture","Legging à trou","Pantalon de Travail","BUUUG","Pantalon de Costume","Pantalon Mercenaire","Pantalon Travail","Pantalon Patte Elephant","Slim","Pantalon Patte Elephant 1","Pantalon Patte Elephant 2","Slim 1","Slim 2","Culotte","Jupe Ouverte","Jogging","Pantalon Noel","Pantalon Noel patte elephant","Treillis","Shorty","Porte jartel","Pantalon Taille haute","Jogging","Pyjama","Pantalon Motard","Pantalon Motard 2","Pantalon Cow-Boy","Pantalon de competition","Pantalon Simple","Pantalon Cow-Boy 2","Slim Jeans","Slim Jeans 2","Slim 1","Slim 2","Slim 3","Collant Resille","Pantalon Motard","Jogging 1","Jogging 2","Jogging 3","Jogging 4","Jogging 5","jogging 6","Deguisement","Legging Militaire","Legging Illuminé","Pantalon Militaire","Pantalon Militaire rentré","Short Militaire","Pantalon Militaire large","Jeans Large","Competition Motard","Pantalon aviateur 1","Pantalon aviateur 2","Legging","Legging coloré","Pantalon Travail","Survetement rentré","Survetment","Legging","Pantalon large"}
+		botItem = {"Jeans","Wide Jeans","Jogging shorts","Simple Pants","Hemmed Jeans","Shorts","Elephant patterned trousers","Work Skirt","Short skirt","Short sequined skirt","Shorts","Denim Jeans","Schoolgirl skirt","I am the 13","Shorts 1","Panties 1","Shorts 2","Cheeky 2","Long skirt","Shorty","Jartelle door","Cheeky","Jartelle door","Elephant patterned trousers","Long skirt","Shorts","Short skirt","Slim","Skirt","Aviator pants","Treillis","Mercenary pants","Large pants","Garbage Trousers","Long skirt","Suit pants","Work pants","Work Pants 2","Simple pants","Pants Suit","Aviator pants","Pants Closure","Leggings with hole","Work Pants","BUUUG","Suit pants","Mercenary pants","Work Pants","Elephant placket pants","Slim","Elephant placket pants 1","Elephant placket pants 2","Slim 1","Slim 2","Cheeky","Open Skirt","Jogging","Christmas pants","Christmas elephant trousers","Treillis","Shorty","Jartel door","High waist pants","Jogging","Pyjamas","Biker pants","Biker pants 2","Western pants","Competition pants","Simple Pants","Western pants 2","Slim Jeans","Slim Jeans 2","Slim 1","Slim 2","Slim 3","Fishnet tights","Biker pants","Jogging 1","Jogging 2","Jogging 3","Jogging 4","Jogging 5","jogging 6","Disguise","Military Leggings","Illuminated Leggings","Military Pants","Military pants tucked in","Military Shorts","Wide military pants","Wide Jeans","Competition Biker","Aviator pants 1","Aviator pants 2","Leggings","Colored leggings","Work pants","Tucked-in suit","Tracksuit","Leggings","Large pants"}
 
 
 
@@ -877,69 +877,69 @@ function chaussureFct(menu)
 
 						chaussureItem = {
 							"Sneakers",
-							"Chaussure basse",
+							"Low top shoe",
 							"Sneakers",
-							"Chaussure luxieuse",
-							"Chaussure classique",
-							"Claquette",
-							"Claquette chaussette",
-							"Chaussure chaussette montante",
-							"Chaussure chaussette montante",
-							"Chaussure chaussette montante",
-							"Chaussure luxe chaussette montante",
-							"Chaussure luxe",
-							"Chaussure aventurier",
+							"Luxurious shoe",
+							"Classic shoe",
+							"Tap Shoe",
+							"Sock flapper",
+							"High sock shoe",
+							"High sock shoe",
+							"High sock shoe",
+							"Luxury high sock shoe",
+							"Luxury shoe",
+							"Adventurer shoe",
 							"/",
-							"Chaussure aventurier",
-							"Chaussure luxe",
-							"Claquette",
-							"Chaussure de lutin",
-							"Chaussure luxe",
-							"Chaussure luxe",
-							"Chaussure luxe",
-							"Chaussure luxe",
+							"Adventurer shoe",
+							"Luxury shoe",
+							"Tap shoe",
+							"Leprechaun shoe",
+							"Luxury shoe",
+							"Luxury shoe",
+							"Luxury shoe",
+							"Luxury shoe",
+							"Classic shoe",
+							"Ankle boot",
+							"Ankle boot",
+							"Ankle boot",
 							"Chaussure classique",
-							"Bottine",
-							"Bottine",
-							"Bottine",
-							"Chaussure classique",
-							"Bottine",
-							"Chaussure extravagante",
-							"Chaussure luxe",
-							"Chaussure luxe",
+							"Ankle boot",
+							"Extravagant shoe",
+							"Luxury shoe",
+							"Luxury shoe",
 							"Sneakers",
-							"Chaussure street",
+							"Street shoe",
 							"/",
-							"Pied nu",
-							"Bottine",
-							"Chaussure luxe",
-							"Botte",
-							"Chaussure avec talon",
-							"Botte",
-							"Chaussure luxe",
-							"Pantoufle",
-							"Sneakers simple",
-							"Chaussure classe",
-							"Botte",
-							"Chaussure basse",
+							"Barefoot",
+							"Ankle boot",
+							"Luxury shoe",
+							"Boot",
+							"Shoe with heel",
+							"Boot",
+							"Luxury shoe",
+							"Slipper",
+							"Simple Sneakers",
+							"Shoe class",
+							"Boot",
+							"Low shoe",
 							"Sneakers",
-							"Botte",
-							"Chaussure classique",
+							"Boot",
+							"Classic shoe",
 							
-							"Chaussure classique",
+							"Classic shoe",
 							
-							"Botte",
-							"Chaussure de marche",
-							"Chaussure",
-							"Botte",
-							"Chaussure de marche",
-							"Chaussure de marche",
-							"Chaussure de marche",
-							"Chaussure de marche",
-							"Chaussure Tron",
-							"Chaussure",
+							"Boot",
+							"Walking shoe",
+							"Shoe",
+							"Boot",
+							"Walking shoe",
+							"Walking shoe",
+							"Walking shoe",
+							"Walking shoe",
+							"Tron shoe",
+							"Shoe",
 							"Sneakers",
-							"Pantoufle lumineuse"
+							"Luminous slipper"
 
 						}
 
@@ -953,7 +953,7 @@ function chaussureFct(menu)
 								
 							end
 							if chaussureItem[ind] == nil then
-								chaussureItem[ind] = "Chaussures #"..i
+								chaussureItem[ind] = "Shoes #"..i
 							end
 							x = NativeUI.CreateListItem(chaussureItem[ind], amount, 1, "",5)
 						
@@ -1019,7 +1019,7 @@ function chaussureFct(menu)
 							end
 						end
 	else
-		chaussureItem= {"Talon","Chaussure de ville","Boots","Converse","Chaussure de sport","Tongs","Talon Aiguille a bout pointu","Bottines","Talon a bout ouvert","Cuissard","Chaussure de sport","Basket Montante","Pied Nu","Ballerine","Sandale � Talon","Sandale","Chaussure de lutin","Escarpin","Chaussure � talon","Talon Aiguille","Botte","Talon Aiguille 2","Escarpin","Botte de s�curit�","Botte de s�curit� 2","Bottine Us�","Chaussure de ville","Chaussure de sport","Chaussure de costume","Bottine","Chaussure Montante","Basket de Sport","Converse avec soulier","Pied Nu","Pied Nu 2","Botte de montagne","Mocassin","Botte Western","Chaussure de cow boy","Botte de costume","Escarpin","Talon 2","Botine a talon","talon aiguille 2","Botte Western 2","Chaussure Western","Chaussure de sport","Botte de ski","Converse 2","Converse 3","Botte Motard","Chaussure Motard","Bottine en cuir","Botte Motard 2","Chaussure Motard 2","Botte Motard 3","Chaussure Motard 3","Chaussure de sport illumin�","Chaussure en cuir","Baskte Montante","Pantoufle","Chaussure de s�curit�","Botte Montagne","Chaussure Montagne","Botte Montagne 2","Chaussure Montagne 2","Chaussure de Tennis","Chaussure Montante","Chaussure de ville","Palme","Pantoufle","Basket","Botte","Chaussure s�curit�","Botte Montagne","Chaussure de marche","Gros Talon"}
+		chaussureItem= {"Heel","Street shoe","Boots","Converse","Sports shoe","Flip flops","Pointed Toe Stiletto Heel","Ankle boots","Open toe heel","Shorts","Sports shoe","Basketball Rising Shoe","Barefoot","Ballerina","Heel Sandal","Sandal","Leprechaun shoe","Pump","Heeled shoe","Stiletto heel","Boot","Stiletto heel 2","Pump","Safety boot","Safety boot 2","Us boots","Street shoe","Sports shoe","Costume shoe","Ankle boot","High Shoe","Basketball shoe","Converse","Barefoot","Barefoot 2","Mountain boot","Moccasin","Western Boot","Cowboy boot","Costume boot","Pump","Heel 2","Heeled ankle boot","stiletto heel 2","Western boot 2","Western shoe","Sports shoe","Ski boot","Converse 2","Converse 3","Biker Boot","Biker shoe","Leather ankle boot","Biker Boot 2","Biker shoe 2","Biker shoe 3","Biker shoe 3","Illuminated sports shoe","Leather shoe","Basketball Rising","Slipper","Safety shoe","Mountain boot","Mountain shoe","Mountain boot 2","Mountain shoe 2","Tennis shoes","High Shoe","Street shoe","Webbed","Slipper","Basketball Shoe","Boot","Safety shoe","Mountain boot","Walking shoe","Big Heel"}
 		for i = 0,#chaussureItem,1 do
 			--
 			local amount = {}
@@ -1030,7 +1030,7 @@ function chaussureFct(menu)
 				
 			end
 			if chaussureItem[ind] == nil then
-				chaussureItem[ind] = "Chaussures #"..i
+				chaussureItem[ind] = "Shoes #"..i
 			end
 			x = NativeUI.CreateListItem(chaussureItem[ind], amount, 1, "",5)
 		
@@ -1047,44 +1047,44 @@ function boucleFct(menu)
 	if curSex == 0 or 1 then
 	playerPed = GetPlayerPed(-1)
 	boucleItem = {
-		"Oreillete",
-		"Oreillete",
-		"Oreillete",
-		"Aucun",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
-		"Boucle d'oreille",
+		"Headset",
+		"Headset",
+		"Headset",
+		"None",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
+		"Earring",
 
-		"Boucle d'oreille",
+		"Earring",
 
 
 
@@ -1099,7 +1099,7 @@ function boucleFct(menu)
 			
 		end
 		if boucleItem[i] == nil then
-			boucleItem[i] = "Boucle #"..i
+			boucleItem[i] = "Earpiece #"..i
 		end
 		x = NativeUI.CreateListItem(boucleItem[ind], amount, 1, "",5)
 	
@@ -1133,33 +1133,33 @@ function lunetteFct(menu)
 	if curSex == 0 then
 	playerPed = GetPlayerPed(-1)
 	lunetteItem = {
-		"Aucune",
-		"Lunette sport",
-		"Lunette de soleil",
-		"Lunette old school",
-		"Lunette moyen-age",
-		"Lunette de soleil",
-		"Aucune",
-		"Lunette de soleil",
-		"Lunette",
-		"Lunette sport",
-		"Lunette mafieux",
-		"Aucune",
-		"Lunette luxe",
-		"Lunette de baron",
-		"Aucune",
-		"Lunette sport",
-		"Lunette sport",
-		"Lunette teinté",
-		"Lunette",
-		"Fausse lunette",
-		"Lunette moderne",
-		"Lunette america",
-		"Lunette america",
-		"Lunette sport",
+		"Any",
+		"Sport glasses",
+		"Sunglasses",
+		"Old school glasses",
+		"Middle age glasses",
+		"Sunglasses",
+		"Any",
+		"Sunglasses",
+		"Glasses",
+		"Sport Glasses",
+		"Mafia glasses",
+		"Any",
+		"Luxury frames",
+		"Baron's scope",
+		"Any",
+		"Sport Glasses",
+		"Sport Glasses",
+		"Tinted frames",
+		"Glasses",
+		"Fake frames",
+		"Modern frames",
+		"American Glasses",
+		"American Glasses",
+		"Sport glasses",
 		
-		"Lunette aviateur",
-		"Lunette aviateur"
+		"Aviator glasses",
+		"Aviator glasses"
 	}
 
 
@@ -1173,7 +1173,7 @@ function lunetteFct(menu)
 			
 		end
 		if lunetteItem[i] == nil then
-			lunetteItem[i] = "Lunette #"..i
+			lunetteItem[i] = "Glasses #"..i
 		end
 		x = NativeUI.CreateListItem(lunetteItem[ind], amount, 1, "",5)
 	
@@ -1236,72 +1236,72 @@ playerPed = GetPlayerPed(-1)
 	
 	
 	local chapeauItem = {
-		"Casque",
-		"Bonnet d'âne",
+		"Helmet",
+		"dunce cap",
 		"Bonnet",
 		"Bob",
-		"Casquette LS",
+		"LS cap",
 		"Bonnet",
-		"Casquette miliaire",
+		"Military cap",
 		"Beret",
 		"",
-		"Casquette à l'envers",
-		"Casquette",
+		"Cap inside out",
+		"Cap",
 		"",
-		"Chapeau",
-		"Chapeau Cowboy",
+		"Hat",
+		"Cowboy Hat",
 		"Bandana",
-		"Casque de musique",
-		"Casque",
-		"Casque",
-		"Casque",
-		"Casque de pilote",
-		"Bob de pêcheur",
-		"Chapeau chill",
-		"Chapeau de noël",
-		"Chapeau de lutin",
-		"Corne de noël",
-		"Chapeau",
-		"Chapeau melon",
-		"Chapeau haut",
+		"Headphone",
+		"Helmet",
+		"Helmet",
+		"Helmet",
+		"Pilot helmet",
+		"Fisherman's bob",
+		"Chill hat",
+		"Christmas hat",
+		"Leprechaun hat",
+		"Christmas horn",
+		"Hat",
+		"Bowler hat",
+		"High hat",
 		"Bonnet",
-		"Chapeau",
-		"Chapeau",
-		"Chapeau USA",
-		"Chapeau USA",
-		"Chapeau USA",
-		"Bonnet USA",
+		"Hat",
+		"Hat",
+		"USA Hat",
+		"USA Hat",
+		"USA Hat",
+		"USA Bonnet",
 		"USA",
-		"Entenne USA",
-		"Casque à bière",
-		"Casque aviation",
-		"Casque d'intervention",
-		"Chapeau noël",
-		"Chapeau noël",
-		"Chapeau noël",
-		"Chapeau noël",
-		"Casquette",
-		"Casquette à l'envers",
-		"Casquette LSPD",
-		"Casque d'aviateur",
-		"Casque",
-		"Casque",
-		"Casque",
-		"Casque",
-		"Casque",
-		"Casque",
-		"Casque",
-		"Casquette",
-		"Casquette",
-		"Casquette",
-		"Chapeau Alien",
-		"Casquette",
-		"Casque",
-		"Casquette",
-		"Chapeau",
-		"Casque",
-		"Chapeau",
-		"Casquette"
+		"USA Antenna",
+		"Beer helmet",
+		"Aviation helmet",
+		"Intervention helmet",
+		"Christmas hat",
+		"Christmas hat",
+		"Christmas hat",
+		"Christmas hat",
+		"Cap",
+		"Cap inside out",
+		"LSPD Cap",
+		"Aviator helmet",
+		"Helmet",
+		"Helmet",
+		"Helmet",
+		"Helmet",
+		"Helmet",
+		"Helmet",
+		"Helmet",
+		"Cap",
+		"Cap",
+		"Cap",
+		"Alien Hat",
+		"Cap",
+		"Helmet",
+		"Cap",
+		"Hat",
+		"Helmet",
+		"Hat",
+		"Cap"
 		
 	}
 
@@ -1354,7 +1354,7 @@ end
 
 
 local menuLoaded = false
-local clotheShop = NativeUI.CreateMenu("", "Magasin", 5, 100,"shopui_title_midfashion","shopui_title_midfashion")
+local clotheShop = NativeUI.CreateMenu("", "Shop", 5, 100,"shopui_title_midfashion","shopui_title_midfashion")
 function OpenClotheShop()
 	TriggerEvent("parow:exit")
 	
@@ -1426,7 +1426,7 @@ end)
 AddEventHandler('clothesShop:hasEnteredMarker', function(zone)
 
 	CurrentAction6     = 'shop_menu'
-	CurrentAction6Msg  = 'Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique'
+	CurrentAction6Msg  = 'Press ~INPUT_CONTEXT~ to shop.'
 	CurrentAction6Data = {zone = zone}
 
 end)
@@ -1537,7 +1537,7 @@ end)
 local mainMenu = nil
 function OpenAccessMenus()
     _menuPool:CloseAllMenus()
-    mainMenu = NativeUI.CreateMenu("Mes accessoires", "Accessoires disponibles", 5, 200)
+    mainMenu = NativeUI.CreateMenu("My accessories", "Accessories available", 5, 200)
     _menuPool:Add(mainMenu)
     RefreshData()
 
@@ -1551,9 +1551,9 @@ function RefreshData()
     end)
 end
 function maskMenu(menu)
-    local accessories = { "Masque", "Chapeau", "Lunette", "Boucles d'oreille", "Gilet par balles" }
+    local accessories = { "Mask", "Hat", "Glasses", "Earings", "Bulletproof vest" }
     local accessoriesIndex = { "mask", "hat", "glasses", "ears", "gilet" }
-    xss = NativeUI.CreateListItem("Enlever", accessories, 1, "")
+    xss = NativeUI.CreateListItem("To take off", accessories, 1, "")
     menu:AddItem(xss)
     menu.OnListSelect = function(m, item, index)
         if item == xss then
@@ -1583,7 +1583,7 @@ function maskMenu(menu)
         result = MaskTab
         --(json.encode(result))
         if #result == 0 then
-            u = NativeUI.CreateItem("Vide", "")
+            u = NativeUI.CreateItem("Empty", "")
             menu:AddItem(u)
         else
 
@@ -1592,10 +1592,10 @@ function maskMenu(menu)
 				_menuPool:RefreshIndex()
                 local xfvde = _menuPool:AddSubMenu(menu, result[i].label, "", 5, 200)
 
-                xl = NativeUI.CreateItem("Équiper", "")
-                xc = NativeUI.CreateItem("Renommer", "")
-                xv = NativeUI.CreateItem("Donner", "")
-                xb = NativeUI.CreateItem("Jeter", "")
+                xl = NativeUI.CreateItem("Equip", "")
+                xc = NativeUI.CreateItem("Rename", "")
+                xv = NativeUI.CreateItem("Give", "")
+                xb = NativeUI.CreateItem("Throw away", "")
                 xfvde:AddItem(xl)
                 xfvde:AddItem(xc)
                 xfvde:AddItem(xv)
@@ -1609,7 +1609,7 @@ function maskMenu(menu)
                         dos = k.mask_2
                         typos = result[i].type
                         --(typos)
-                        if typos == "Masque" then
+                        if typos == "Mask" then
 
                             if ped then
                                 local dict = 'missfbi4'
@@ -1631,7 +1631,7 @@ function maskMenu(menu)
                                 Citizen.Wait(200)
                                 ClearPedTasks(playerPed)
                             end
-                        elseif typos == "Lunette" then
+                        elseif typos == "Glasses" then
 
                             if ped then
                                 local dict = 'clothingspecs'
@@ -1654,7 +1654,7 @@ function maskMenu(menu)
                                 ClearPedTasks(playerPed)
                             end
 
-                        elseif typos == "Chapeau" then
+                        elseif typos == "Hat" then
 
                             if ped then
                                 local dict = 'missheistdockssetup1hardhat@'
@@ -1676,7 +1676,7 @@ function maskMenu(menu)
                                 Citizen.Wait(200)
                                 ClearPedTasks(playerPed)
                             end
-                        elseif typos == "Boucle" then
+                        elseif typos == "Loop" then
 
                             if ped then
                                 local dict = 'mp_masks@standard_car@rps@'
@@ -1728,7 +1728,7 @@ function maskMenu(menu)
                         local closestPed = GetPlayerPed(closestPlayer)
 
                         if IsPedSittingInAnyVehicle(closestPed) then
-                            ESX.ShowNotification('~r~Impossible de donner un objet dans un véhicule')
+                            ESX.ShowNotification('~r~Cannot donate an item in a vehicle')
                             return
                         end
 
@@ -1744,7 +1744,7 @@ function maskMenu(menu)
                             menumbk:RemoveItemAt(i+1)
 
                         else
-                            ESX.ShowNotification("~r~Aucun joueurs proche")
+                            ESX.ShowNotification("~r~No nearby players")
 
                         end
 
